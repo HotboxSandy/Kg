@@ -54,28 +54,35 @@ namespace Draw
         public void AddRandomRectangle() 
 		{
 			Random rnd = new Random();
-			int x = rnd.Next(50,500);
-			int y = rnd.Next(50,300);
+			int x = rnd.Next(100,1000);
+			int y = rnd.Next(100,600);
 			
-			RectangleShape rect = new RectangleShape(new Rectangle(x,y,50,100));
+			RectangleShape rect = new RectangleShape(new Rectangle(x,y,100,200));
 			rect.FillColor = Color.White;
-            rect.StrokeColor = Color.Green;
+            rect.StrokeColor = Color.Aqua;
             ShapeList.Add(rect);
 		} 
 
-  
         public void AddRandomEllipse() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(50, 500);
-            int y = rnd.Next(50, 300);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            EllipseShape ellipse = new EllipseShape(new Rectangle(x, y, 50, 100));
+            EllipseShape ellipse = new EllipseShape(new Rectangle(x, y, 100, 200));
             ellipse.FillColor = Color.White;
-			ellipse.StrokeColor = Color.Brown;
+			ellipse.StrokeColor = Color.Aquamarine;
 
             ShapeList.Add(ellipse);
         } 
+
+        /// <summary>
+        /// Checks if a point is in the element.
+        /// Iterates in reverse order of the preview to find the
+        /// the "top" element ie. the one we see under the mouse.
+        /// </summary>
+        /// <param name="point">Point indicated</param>
+        /// <returns>The image element to which the given point belongs.</returns>
         public Shape ContainsPoint(PointF point)
 		{
 			for(int i = ShapeList.Count - 1; i >= 0; i--){
@@ -88,7 +95,10 @@ namespace Draw
 			return null;
 		}
 
-
+        /// <summary>
+        /// Translation of the selected element to the vector specified by <paramref name="p>p</paramref>
+        /// </summary>
+        /// <param name="p">Translation vector.</param>
         public void TranslateTo(PointF p)
 		{
 			foreach(Shape item in Selection) {
@@ -97,6 +107,7 @@ namespace Draw
 			}
 		}
 
+        /// Color window.
         public void SetFillColor(Color color) 
         {
             foreach (var item in Selection)
@@ -113,27 +124,29 @@ namespace Draw
             base.Draw(grfx);
             foreach (var item in Selection)
             {
-                grfx.DrawRectangle(Pens.Black, item.Location.X - 4, item.Location.Y - 4, item.Width + 8, item.Height + 8);
+                grfx.DrawRectangle(Pens.Black, item.Location.X - 3, item.Location.Y - 3, item.Width + 6, item.Height + 6);
             }
         } 
+
+
         public void Group() 
         {
             if (Selection.Count < 2) return;
 
-            float minX = float.PositiveInfinity;
+            float minX = float.PositiveInfinity; // Initialize Boundary Variables
             float minY = float.PositiveInfinity;
             float maxX = float.NegativeInfinity;
             float maxY = float.NegativeInfinity;
             foreach (var item in Selection)
             {
-                if (minX > item.Location.X) minX = item.Location.X;
+                if (minX > item.Location.X) minX = item.Location.X; // Find Bounding Box
                 if (minY > item.Location.Y) minY = item.Location.Y;
                 if (maxX < item.Location.X + item.Width) maxX = item.Location.X + item.Width;
                 if (maxY < item.Location.Y + item.Height) maxY = item.Location.Y + item.Height;
             }
 
             var group = new GroupShape(new RectangleF(minX, minY, maxX - minX, maxY - minY));
-            group.SubShape = Selection;
+            group.SubItems = Selection;
 
             foreach (var item in Selection)
             {
@@ -145,13 +158,15 @@ namespace Draw
 
             ShapeList.Add(group);
         }
+
+
         public void Ungroup() 
         {
             for (int i = 0; i < Selection.Count; i++)
             {
                 if (Selection[i] is GroupShape)
                 {
-                    var ungroupedShapes = (Selection[i] as GroupShape).SubShape;
+                    var ungroupedShapes = (Selection[i] as GroupShape).SubItems;
                     ShapeList.AddRange(ungroupedShapes);
                     ShapeList.RemoveAt(ShapeList.IndexOf(Selection[i]));
                     Selection.AddRange(ungroupedShapes);
@@ -160,59 +175,78 @@ namespace Draw
                 }
             }
         }
-        public void AddCircle()
+
+
+        public void AddRandomCircle() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(50, 500);
-            int y = rnd.Next(50, 300);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            CircleShape circle = new CircleShape(new Rectangle(x, y, 50, 50));
+            CircleShape circle = new CircleShape(new Rectangle(x, y, 100, 100));
             circle.FillColor = Color.White;
-            circle.StrokeColor = Color.Blue;
+            circle.StrokeColor = Color.LightSkyBlue;
 
             ShapeList.Add(circle);
         }
-        public void AddTriangle()
+
+
+        public void AddRandomTriangle()
         {
             Random rnd = new Random();
-            int x = rnd.Next(50, 500);
-            int y = rnd.Next(50, 300);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            TriangleShape triangle = new TriangleShape(new Rectangle(x, y, 50, 50));
+            TriangleShape triangle = new TriangleShape(new Rectangle(x, y, 100, 100));
             triangle.FillColor = Color.White;
-            triangle.StrokeColor = Color.Black;
+            triangle.StrokeColor = Color.LightSlateGray;
 
             ShapeList.Add(triangle);
         }
-        public void AddSquare()
+
+
+
+        public void AddRandomSquare() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(50, 500);
-            int y = rnd.Next(50, 300);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            SquareShape square = new SquareShape(new Rectangle(x, y, 50, 50));
+            SquareShape square = new SquareShape(new Rectangle(x, y, 100, 100));
             square.FillColor = Color.White;
-            square.StrokeColor = Color.Black;
+            square.StrokeColor = Color.ForestGreen;
 
             ShapeList.Add(square);
         }
-        public void OpenFile(string fileName)
+
+
+
+        public void OpenFile(string fileName) 
         {
             FileStream fs = new FileStream(fileName, FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
             ShapeList = (List<Shape>)bf.Deserialize(fs);
             fs.Close();
-        }
+        } 
+
+
+        // Choosing shapes.
         public void SelectAll()
         {
             Selection = new List<Shape>(ShapeList);
         }
+
+
+
+        // Deleting shapes.
         internal void Delete() 
         {
             foreach (var item in Selection)
             ShapeList.Remove(item);
             Selection.Clear();
-        }
+        } 
+
+
         public void SaveAs(string fileName) 
         {
             FileStream fs = new FileStream(fileName, FileMode.Create);
@@ -220,100 +254,117 @@ namespace Draw
             bf.Serialize(fs, ShapeList);
             fs.Close();
         } 
-        public void AddCrossedCircle()
+
+        public void AddRandomDoubleCrossedCircle() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(50, 500);
-            int y = rnd.Next(50, 300);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            DoubleCrossedCircle ellipse = new DoubleCrossedCircle(new Rectangle(x, y, 50, 50));
+            DoubleCrossedCircle ellipse = new DoubleCrossedCircle(new Rectangle(x, y, 100, 100));
             ellipse.FillColor = Color.LightBlue;
             ellipse.StrokeColor = Color.Black;
 
             ShapeList.Add(ellipse);
         }
-        public void AddLine()
+
+ 
+        public void AddRandomLine() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(70, 700);
-            int y = rnd.Next(70, 450);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            LineShape line = new LineShape(new Rectangle(x, y, 70, 0));
+            LineShape line = new LineShape(new Rectangle(x, y, 150, 0));
             line.FillColor = Color.White;
             line.StrokeColor = Color.DarkOrchid;
             ShapeList.Add(line);
-        }
+        } 
+
+
         public void AddRandomCrossedCircle() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(70, 700);
-            int y = rnd.Next(70, 450);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            CrossedCircle ellipse = new CrossedCircle(new Rectangle(x, y, 70, 70));
+            CrossedCircle ellipse = new CrossedCircle(new Rectangle(x, y, 100, 100));
             ellipse.FillColor = Color.LightBlue;
             ellipse.StrokeColor = Color.Black;
 
             ShapeList.Add(ellipse);
         }
-        public void AddTripleCrossedCircle()
+
+
+        public void AddRandomTripleCrossedCircle() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(70, 700);
-            int y = rnd.Next(70, 450);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            TripleCrossedCircle ellipse = new TripleCrossedCircle(new Rectangle(x, y, 70, 70));
+            TripleCrossedCircle ellipse = new TripleCrossedCircle(new Rectangle(x, y, 100, 100));
             ellipse.FillColor = Color.LightBlue;
             ellipse.StrokeColor = Color.Black;
 
             ShapeList.Add(ellipse);
         }
-        public void AddCrosssedCircleWithTwoLines() 
+
+
+        public void AddRandomCrosssedCircleWithTwoLines() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(70, 700);
-            int y = rnd.Next(70, 450);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            CrossedCircleWithTwoLines ellipse = new CrossedCircleWithTwoLines(new Rectangle(x, y, 70, 70));
+            CrossedCircleWithTwoLines ellipse = new CrossedCircleWithTwoLines(new Rectangle(x, y, 100, 100));
             ellipse.FillColor = Color.LightBlue;
             ellipse.StrokeColor = Color.Black;
 
             ShapeList.Add(ellipse);
         }
-        public void AddCrossedCircleWithFourLines()
+
+
+        public void AddRandomCrossedCircleWithFourLines()
         {
             Random rnd = new Random();
-            int x = rnd.Next(70, 700);
-            int y = rnd.Next(70, 450);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            CrossedCircleWithFourLines ellipse = new CrossedCircleWithFourLines(new Rectangle(x, y, 70, 70));
+            CrossedCircleWithFourLines ellipse = new CrossedCircleWithFourLines(new Rectangle(x, y, 100, 100));
             ellipse.FillColor = Color.LightBlue;
             ellipse.StrokeColor = Color.Black;
 
             ShapeList.Add(ellipse);
         }
-        public void AddCrossedRectangle() 
+
+
+        public void AddRandomCrossedRectangle() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(50, 500);
-            int y = rnd.Next(50, 300);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            CrossedRectangle rect = new CrossedRectangle(new Rectangle(x, y, 50, 100));
+            CrossedRectangle rect = new CrossedRectangle(new Rectangle(x, y, 100, 200));
             rect.FillColor = Color.LightBlue;
             rect.StrokeColor = Color.Black;
             ShapeList.Add(rect);
         } 
-        public void AddTripleCrossedRectangle()
+
+
+        public void AddRandomTripleCrossedRectangle() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(50, 500);
-            int y = rnd.Next(50, 300);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            TripleCrossedRectangle rect = new TripleCrossedRectangle(new Rectangle(x, y, 50, 100));
+            TripleCrossedRectangle rect = new TripleCrossedRectangle(new Rectangle(x, y, 100, 200));
             rect.FillColor = Color.LightBlue;
             rect.StrokeColor = Color.Black;
             ShapeList.Add(rect);
         } 
-        public void AddCrossedTriangle()
+
+
+        public void AddRandomCrossedTriangle()
         {
             Random rnd = new Random();
             int x = rnd.Next(100, 1000);
@@ -325,7 +376,9 @@ namespace Draw
 
             ShapeList.Add(triangle);
         }
-        public void AddRandomTripleCrossedTrapezoid()
+
+
+        public void AddRandomTripleCrossedTrapezoid() // Trapec
         {
             Random rnd = new Random();
             int x = rnd.Next(100, 1000);
@@ -337,45 +390,33 @@ namespace Draw
 
             ShapeList.Add(triangle);
         }
-        public void AddRandomDoubleCrossedRhombus()
+
+
+        public void AddRandomDoubleCrossedRhombus()// Romb
         {
             Random rnd = new Random();
-            int x = rnd.Next(70, 700);
-            int y = rnd.Next(70, 450);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            DoubleCrossedRhombus triangle = new DoubleCrossedRhombus(new Rectangle(x, y, 70, 70));
+            DoubleCrossedRhombus triangle = new DoubleCrossedRhombus(new Rectangle(x, y, 100, 100));
             triangle.FillColor = Color.LightBlue;
             triangle.StrokeColor = Color.Black;
 
             ShapeList.Add(triangle);
         }
 
-        
+
         public void AddRandomExamShape() 
         {
             Random rnd = new Random();
-            int x = rnd.Next(50, 500);
-            int y = rnd.Next(50, 300);
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
-            ExamShape ellipse = new ExamShape(new Rectangle(x, y, 50, 50));
+            ExamShape ellipse = new ExamShape(new Rectangle(x, y, 100, 100));
             ellipse.FillColor = Color.LightGreen;
             ellipse.StrokeColor = Color.Black;
 
             ShapeList.Add(ellipse);
         }
-
-        public void AddDoubleCrossedCircle() 
-        {
-            Random rnd = new Random();
-            int x = rnd.Next(70, 700);
-            int y = rnd.Next(70, 450);
-
-            DoubleCrossedCircle ellipse = new DoubleCrossedCircle(new Rectangle(x, y, 70, 70));
-            ellipse.FillColor = Color.LightBlue;
-            ellipse.StrokeColor = Color.Black;
-
-            ShapeList.Add(ellipse);
-        }
-
     } 
 }

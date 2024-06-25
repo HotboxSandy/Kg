@@ -13,52 +13,52 @@ namespace Draw
     /// in which the visualization takes place.
     /// </summary>
     public partial class MainForm : Form
-    {
+	{
         /// <summary>
         /// An aggregated dialog processor in the form facilitates manipulation of the model.
         /// </summary>
         private DialogProcessor dialogProcessor = new DialogProcessor();
-
-        public MainForm()
-        {
-            //
-            // The InitializeComponent() call is required for Windows Forms designer support.
-            //
-            InitializeComponent();
-
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
-        }
+		
+		public MainForm()
+		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
+		}
 
         /// <summary>
         /// Exit the program. Closes the main form and with it the program.
         /// </summary>
         void ExitToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            Close();
-        }
+		{
+			Close();
+		}
 
         /// <summary>
         /// The event that is caught to be previewed when the model is modified.
         /// </summary>
         void ViewPortPaint(object sender, PaintEventArgs e)
-        {
-            dialogProcessor.ReDraw(sender, e);
-        }
+		{
+			dialogProcessor.ReDraw(sender, e);
+		}
 
         /// <summary>
         /// A button that places a rectangle with the specified dimensions at any location.
         /// Changes the status bar and disables the control we're visualising in.
         /// </summary>
         void DrawRectangleSpeedButtonClick(object sender, EventArgs e) //Rectangle Button
-        {
-            dialogProcessor.AddRandomRectangle();
-
-            statusBar.Items[0].Text = "Last step: Drawing a rectangle";
-
-            viewPort.Invalidate();
-        } //end of Rectangle Button
+		{
+			dialogProcessor.AddRandomRectangle();
+			
+			statusBar.Items[0].Text = "Last step: Drawing a rectangle";
+			
+			viewPort.Invalidate();
+		} //end of Rectangle Button
 
         /// <summary>
         /// Catching the coordinates when a mouse button is pressed and checking (in reverse order) if it isn't
@@ -67,47 +67,45 @@ namespace Draw
         /// The implementation is the dialog with the user in which the "top" element of the screen is selected.
         /// </summary>
         void ViewPortMouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (pickUpSpeedButton.Checked)
-            {
-                Shape sel = dialogProcessor.ContainsPoint(e.Location);
-                if (sel != null)
-                {
-                    if (dialogProcessor.Selection.Contains(sel))
-                        dialogProcessor.Selection.Remove(sel);
-                    else
-                        dialogProcessor.Selection.Add(sel);
+		{
+			if (pickUpSpeedButton.Checked) {
+				Shape sel = dialogProcessor.ContainsPoint(e.Location);
+				if(sel != null)
+				{
+					if (dialogProcessor.Selection.Contains(sel))
+						dialogProcessor.Selection.Remove(sel);
+						else
+						dialogProcessor.Selection.Add(sel);
 
-                }
-                statusBar.Items[0].Text = "Last action: Primitive selection";
-                dialogProcessor.IsDragging = true;
-                dialogProcessor.LastLocation = e.Location;
-                viewPort.Invalidate();
-            }
-        }
+				}
+					statusBar.Items[0].Text = "Last action: Primitive selection";
+					dialogProcessor.IsDragging = true;
+					dialogProcessor.LastLocation = e.Location;
+					viewPort.Invalidate();
+			}
+		}
 
         /// <summary>
         /// Capture the mouse movement.
         /// If we are in "drag" mode, the selected element is translated.
         /// </summary>
         void ViewPortMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (dialogProcessor.IsDragging)
-            {
-                if (dialogProcessor.Selection != null) statusBar.Items[0].Text = "Last action: Dragging";
-                dialogProcessor.TranslateTo(e.Location);
-                viewPort.Invalidate();
-            }
-        }
+		{
+			if (dialogProcessor.IsDragging) {
+				if (dialogProcessor.Selection != null) statusBar.Items[0].Text = "Last action: Dragging";
+				dialogProcessor.TranslateTo(e.Location);
+				viewPort.Invalidate();
+			}
+		}
 
         /// <summary>
         /// Catch the release of the mouse button.
         /// Exit "drag" mode.
         /// </summary>
         void ViewPortMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            dialogProcessor.IsDragging = false;
-        }
+		{
+			dialogProcessor.IsDragging = false;
+		}
 
         /// <summary>
         /// A button that places an ellipse with the specified dimensions at any location.
@@ -145,7 +143,7 @@ namespace Draw
         private void GroupPrimitivesButton_Click(object sender, EventArgs e) //GroupPrimitivesButton
         {
             dialogProcessor.Group();
-            viewPort.Invalidate();
+			viewPort.Invalidate();
             // calculate bounding box
             // new group shape
             // SubShape = Selection
@@ -166,7 +164,7 @@ namespace Draw
         /// </summary>
         private void CircleButton_Click(object sender, EventArgs e) //Circle button
         {
-            dialogProcessor.AddCircle();
+            dialogProcessor.AddRandomCircle();
             statusBar.Items[0].Text = "Last action: Drawing a circle";
             viewPort.Invalidate();
         } // end of Circle button
@@ -177,7 +175,7 @@ namespace Draw
         /// </summary>
         private void TriangleButton_Click(object sender, EventArgs e) //Triangle button
         {
-            dialogProcessor.AddTriangle();
+            dialogProcessor.AddRandomTriangle();
             statusBar.Items[0].Text = "Last action: Drawing a triangle";
             viewPort.Invalidate();
         } // end of Triangle button
@@ -188,7 +186,7 @@ namespace Draw
         /// </summary>
         private void SquareButton_Click(object sender, EventArgs e) //Square button
         {
-            dialogProcessor.AddSquare();
+            dialogProcessor.AddRandomSquare();
             statusBar.Items[0].Text = "Last action: Drawing a square";
             viewPort.Invalidate();
         } // end of Square button
@@ -273,7 +271,7 @@ namespace Draw
         /// </summary>
         private void DoubleCrossedCircle_Click(object sender, EventArgs e) // DoubleCrossedCircle button
         {
-            dialogProcessor.AddDoubleCrossCircle();
+            dialogProcessor.AddRandomDoubleCrossedCircle();
             statusBar.Items[0].Text = "Last action: Drawing a  double crossed circle";
             viewPort.Invalidate();
         } // end of DoubleCrossedCircle button
@@ -285,7 +283,7 @@ namespace Draw
         /// </summary>
         private void LineButton_Click(object sender, EventArgs e) //Line button
         {
-            dialogProcessor.AddLine();
+            dialogProcessor.AddRandomLine();
 
             statusBar.Items[0].Text = "Last action: Drawing a line";
 
@@ -299,7 +297,7 @@ namespace Draw
         /// </summary>
         private void CrossedCircle_Click(object sender, EventArgs e) //CrossedCircle button
         {
-            dialogProcessor.AddRandomCrossCircle();
+            dialogProcessor.AddRandomCrossedCircle();
             statusBar.Items[0].Text = "Last action: Drawing a crossed circle";
             viewPort.Invalidate();
         }// end of DoubleCrossedCircle button
@@ -310,7 +308,7 @@ namespace Draw
         /// </summary>
         private void TripleCrossedCircle_Click(object sender, EventArgs e) // TripleCrossedCircle button
         {
-            dialogProcessor.AddTripleCrossCircle();
+            dialogProcessor.AddRandomTripleCrossedCircle();
             statusBar.Items[0].Text = "Last action: Drawing a triple crossed circle";
             viewPort.Invalidate();
         } // end of TripleCrossedCircle button
@@ -321,18 +319,18 @@ namespace Draw
         /// </summary>
         private void CrossedCircleWithTwoLines_Click(object sender, EventArgs e) //CrossedCircleWithTwoLines button
         {
-            dialogProcessor.AddCrosssCircleWithTwoLines();
+            dialogProcessor.AddRandomCrosssedCircleWithTwoLines();
             statusBar.Items[0].Text = "Last action: Drawing a crossed circle with two lines";
-            viewPort.Invalidate();
+            viewPort.Invalidate(); 
         }// end of CrossedCircleWithTwoLines button
-
+        
         /// <summary>
         /// A button that places a crossed circle with four lines with the specified dimensions at any location.
         /// It changes the status bar and disables the control in which we are visualising.
         /// </summary>
         private void CrossedCircleWithFourLines_Click(object sender, EventArgs e) //CrossedCircleWithFourLines button
         {
-            dialogProcessor.AddCrossCircleWithFourLines();
+            dialogProcessor.AddRandomCrossedCircleWithFourLines();
             statusBar.Items[0].Text = "Last action: Drawing a crossed circle with four lines";
             viewPort.Invalidate();
         } // end of CrossedCircleWithFourLines button
@@ -343,18 +341,18 @@ namespace Draw
         /// </summary>
         private void CrossedRectangle_Click(object sender, EventArgs e) //CrossedRectangle button
         {
-            dialogProcessor.AddCrossRectangle();
+            dialogProcessor.AddRandomCrossedRectangle();
             statusBar.Items[0].Text = "Last action: Drawing a crossed rectangle with two lines";
             viewPort.Invalidate();
         } // end of CrossedRectangle button
-
+        
         /// <summary>
         /// A button that places a triple crossed rectangle with the specified dimensions at any location.
         /// It changes the status bar and disables the control in which we are visualising.
         /// </summary>
         private void TripleCrossedRectangle_Click(object sender, EventArgs e) //TripleCrossedRectangle button
         {
-            dialogProcessor.AddTripleCrossRectangle();
+            dialogProcessor.AddRandomTripleCrossedRectangle();
             statusBar.Items[0].Text = "Last action: Drawing a triple crossed rectangle";
             viewPort.Invalidate();
         } // end of TripleCrossedRectangle button
@@ -365,7 +363,7 @@ namespace Draw
         /// </summary>
         private void CrossedTriangle_Click(object sender, EventArgs e) // CrossedTriangle button
         {
-            dialogProcessor.AddCrossTriangle();
+            dialogProcessor.AddRandomCrossedTriangle();
             statusBar.Items[0].Text = "Last action: Drawing a crossed triangle";
             viewPort.Invalidate();
         } // end of CrossedTriangle button
@@ -376,7 +374,7 @@ namespace Draw
         /// </summary>
         private void TripleCrossedTrapezoid_Click(object sender, EventArgs e) // TripleCrossedTrapezoid button
         {
-            dialogProcessor.AddRandomTripleCrossTrapezoid();
+            dialogProcessor.AddRandomTripleCrossedTrapezoid();
             statusBar.Items[0].Text = "Last action: Drawing a triple crossed trapezoid";
             viewPort.Invalidate();
         }// end of TripleCrossedTrapezoid button
@@ -388,7 +386,7 @@ namespace Draw
         /// </summary>
         private void DoubleCrossedRhombus_Click(object sender, EventArgs e) // DoubleCrossedRhombus button
         {
-            dialogProcessor.AddRandomDoubleCrossRhombus();
+            dialogProcessor.AddRandomDoubleCrossedRhombus();
             statusBar.Items[0].Text = "Last action: Drawing a double crossed rhombus";
             viewPort.Invalidate();
         } // end of DoubleCrossedRhombus button

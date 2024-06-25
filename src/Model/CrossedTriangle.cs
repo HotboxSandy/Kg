@@ -4,31 +4,27 @@ using System.Reflection;
 
 namespace Draw.src.Model
 {
-    /// <summary>
     /// The Triangle class is a base primitive that inherits from the base Shape.
-    /// </summary>
     [Serializable]
-    public class CrossTriangle : Shape
+    public class CrossedTriangle : Shape
     {
         #region Constructor
 
-        public CrossTriangle(RectangleF rect) : base(rect)
+        public CrossedTriangle(RectangleF rect) : base(rect)
         {
         }
 
-        public CrossTriangle(CrossTriangle rectangle) : base(rectangle)
+        public CrossedTriangle(CrossedTriangle rectangle) : base(rectangle)
         {
         }
 
         #endregion
 
-        /// <summary>
         /// Checking whether a point belongs to the triangle.
         /// In the case of a triangle, this method may not be overridden because
         /// The implementation matches that of the abstract Shape class it checks for
         /// whether the point is in the element's bounding triangle (and it matches
         /// the element in this case).
-        /// </summary>
         public override bool Contains(PointF point)
         {
             if (base.Contains(point))
@@ -41,9 +37,7 @@ namespace Draw.src.Model
         }
 
 
-        /// <summary>
         /// The part visualising the specific primitive.
-        /// </summary>
         public override void DrawSelf(Graphics grfx)
         {
             base.DrawSelf(grfx);
@@ -76,5 +70,5 @@ namespace Draw.src.Model
             grfx.DrawLine(new Pen(StrokeColor), points[2], middle);
         }
 
-    } // end of class TriangleShape
+    } 
 }

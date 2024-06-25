@@ -66,5 +66,5 @@ namespace Draw
 		}
 		
 		#endregion
-	} // end of class DisplayProcessor
+	} 
 }

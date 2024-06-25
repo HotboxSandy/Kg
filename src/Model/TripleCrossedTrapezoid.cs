@@ -4,19 +4,17 @@ using System.Reflection;
 
 namespace Draw.src.Model
 {
-    /// <summary>
-    /// The Trapezoid class is a base primitive that inherits from the base Shape.
-    /// </summary>
+
     [Serializable]
-    public class TripleCrossTrapezoid : Shape
+    public class TripleCrossedTrapezoid : Shape
     {
         #region Constructor
 
-        public TripleCrossTrapezoid(RectangleF rect) : base(rect)
+        public TripleCrossedTrapezoid(RectangleF rect) : base(rect)
         {
         }
 
-        public TripleCrossTrapezoid(TripleCrossTrapezoid rectangle) : base(rectangle)
+        public TripleCrossedTrapezoid(TripleCrossedTrapezoid rectangle) : base(rectangle)
         {
         }
 
@@ -40,9 +38,7 @@ namespace Draw.src.Model
                 return false;
         }
 
-        /// <summary>
         /// The part visualising the specific primitive.
-        /// </summary>
         public override void DrawSelf(Graphics grfx)
         {
             base.DrawSelf(grfx);

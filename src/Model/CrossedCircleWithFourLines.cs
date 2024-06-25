@@ -5,31 +5,27 @@ using System.Drawing;
 
 namespace Draw.src.Model
 {
-    /// <summary>
-    /// The Circle class is a base primitive that inherits from the base Shape.
-    /// </summary>
+
     [Serializable]
-    public class CrossCircleWithFourLines : Shape
+    public class CrossedCircleWithFourLines : Shape
     {
         #region Constructor
 
-        public CrossCircleWithFourLines(RectangleF rect) : base(rect)
+        public CrossedCircleWithFourLines(RectangleF rect) : base(rect)
         {
         }
 
-        public CrossCircleWithFourLines(CrossCircleWithFourLines rectangle) : base(rectangle)
+        public CrossedCircleWithFourLines(CrossedCircleWithFourLines rectangle) : base(rectangle)
         {
         }
 
         #endregion
 
-        /// <summary>
         /// Checking whether a point belongs to the circle.
         /// In the case of a circle, this method may not be overridden because
         /// The implementation matches that of the abstract Shape class it checks for
         /// whether the point is in the element's bounding circle (and it matches
         /// the element in this case).
-        /// </summary>
         public override bool Contains(PointF point)
         {
             if (base.Contains(point))
@@ -44,9 +40,7 @@ namespace Draw.src.Model
                 return false;
         }
 
-        /// <summary>
         /// The part visualising the specific primitive.
-        /// </summary>
         public override void DrawSelf(Graphics grfx)
         {
             base.DrawSelf(grfx);
@@ -90,6 +84,6 @@ namespace Draw.src.Model
 
             // Draw the horizontal line in the middle
             grfx.DrawLine(new Pen(StrokeColor), lineX1, lineY1, lineX2, lineY2);
-        } // end of class TripleCrossedCircle
+        } 
     }
 }

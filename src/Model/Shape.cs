@@ -4,9 +4,7 @@ using System.Drawing;
 
 namespace Draw
 {
-    /// <summary>
-    /// The base class of primitives, which contains the general characteristics of primitives.
-    /// </summary>
+
 	[Serializable]
     public abstract class Shape
 	{
@@ -86,9 +84,7 @@ namespace Draw
         #endregion
 
 
-        /// <summary>
         /// Checking if point belongs to the element.
-        /// </summary>
         /// <param name="point">Point</param>
         /// <returns>Returns true if the point belongs to the element and
         /// false, if it does not.</returns>
@@ -97,14 +93,12 @@ namespace Draw
 			return Rectangle.Contains(point.X, point.Y);
 		}
 		
-		/// <summary>
 		/// Visualise the element.
-		/// </summary>
 		/// <param name="grfx">Where to visualise the element.</param>
 		public virtual void DrawSelf(Graphics grfx)
 		{
 			// shape.Rectangle.Inflate(shape.BorderWidth, shape.BorderWidth);
 		}
 		
-	} // end of class Shape
+	} 
 }

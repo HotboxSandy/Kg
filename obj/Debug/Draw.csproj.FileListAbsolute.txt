@@ -27,13 +27,13 @@ C:\Users\grmed\source\repos\2001262013\trunk\CGProject\obj\Debug\Draw.csproj.Gen
 C:\Users\grmed\source\repos\2001262013\trunk\CGProject\obj\Debug\Draw.csproj.CoreCompileInputs.cache
 C:\Users\grmed\source\repos\2001262013\trunk\CGProject\obj\Debug\Draw.exe
 C:\Users\grmed\source\repos\2001262013\trunk\CGProject\obj\Debug\Draw.pdb
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\bin\Debug\Draw.exe
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\bin\Debug\Draw.pdb
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\obj\Debug\Draw.csproj.AssemblyReference.cache
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\obj\Debug\Draw.Properties.Resources.resources
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\obj\Debug\Draw.DoubleBufferedPanel.resources
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\obj\Debug\Draw.MainForm.resources
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\obj\Debug\Draw.csproj.GenerateResource.cache
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\obj\Debug\Draw.csproj.CoreCompileInputs.cache
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\obj\Debug\Draw.exe
-C:\Users\ALEX\Desktop\15984\2New\Компютърна графика\Курсов проект\CGProject\obj\Debug\Draw.pdb
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\bin\Debug\Draw.exe
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\bin\Debug\Draw.pdb
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\obj\Debug\Draw.csproj.AssemblyReference.cache
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\obj\Debug\Draw.Properties.Resources.resources
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\obj\Debug\Draw.DoubleBufferedPanel.resources
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\obj\Debug\Draw.MainForm.resources
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\obj\Debug\Draw.csproj.GenerateResource.cache
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\obj\Debug\Draw.csproj.CoreCompileInputs.cache
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\obj\Debug\Draw.exe
+C:\Users\ALEX\Desktop\15984\2New\ReadyKG\CGProject\obj\Debug\Draw.pdb

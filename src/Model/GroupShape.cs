@@ -4,9 +4,7 @@ using System.Drawing;
 
 namespace Draw
 {
-    /// <summary>
-    /// The Group class is a base primitive that inherits from the base Shape.
-    /// </summary>
+    // The Group class is a base primitive that inherits from the base Shape.
     [Serializable]
     public class GroupShape : Shape
     {
@@ -20,13 +18,13 @@ namespace Draw
         {
         }
 
-        public List<Shape> SubShape { get; set; }
+        public List<Shape> SubItems { get; set; }
 
         public override Color FillColor
         {
             set
             {
-                foreach (var item in SubShape)
+                foreach (var item in SubItems)
                 {
                     item.FillColor = value;
                 }
@@ -42,20 +40,18 @@ namespace Draw
                 float dx = value.X - Location.X;
                 float dy = value.Y - Location.Y;
                 base.Location = value;
-                foreach (var item in SubShape)
+                foreach (var item in SubItems)
                 {
                     item.Location = new PointF(item.Location.X + dx, item.Location.Y + dy);
                 }
             }
         }
 
-        /// <summary>
         /// Checking whether a point belongs to the primitive.
         /// In the case of a primitive, this method may not be overridden because
         /// The implementation matches that of the abstract Shape class it checks for
         /// whether the point is in the element's bounding primitive (and it matches
         /// the element in this case).
-        /// </summary>
         public override bool Contains(PointF point)
         {
             if (base.Contains(point))
@@ -63,7 +59,7 @@ namespace Draw
                 // Check if it is in the object only if the point is in the bounding primitive.
                 // In the case of a primitive - we directly return true
 
-                foreach (var item in SubShape)
+                foreach (var item in SubItems)
                 {
                     if (item.Contains(point)) return true;
                 }
@@ -74,18 +70,16 @@ namespace Draw
                 return false;
         }
 
-        /// <summary>
-        /// The part visualising the specific primitive.
-        /// </summary>
+        // The part visualising the specific primitive.
         public override void DrawSelf(Graphics grfx)
         {
             base.DrawSelf(grfx);
 
-            foreach (var item in SubShape)
+            foreach (var item in SubItems)
             {
                 item.DrawSelf(grfx);
             }
         }
-    } // end of class GroupShape
+    } 
 }
 

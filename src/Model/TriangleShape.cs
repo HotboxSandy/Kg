@@ -3,9 +3,7 @@ using System.Drawing;
 
 namespace Draw.src.Model
 {
-    /// <summary>
     /// The Triangle class is a base primitive that inherits from the base Shape.
-    /// </summary>
     [Serializable]
     public class TriangleShape : Shape
     {
@@ -21,13 +19,11 @@ namespace Draw.src.Model
 
         #endregion
 
-        /// <summary>
         /// Checking whether a point belongs to the triangle.
         /// In the case of a triangle, this method may not be overridden because
         /// The implementation matches that of the abstract Shape class it checks for
         /// whether the point is in the element's bounding triangle (and it matches
         /// the element in this case).
-        /// </summary>
         public override bool Contains(PointF point)
         {
             PointF a = Rectangle.Location;
@@ -47,9 +43,7 @@ namespace Draw.src.Model
             return Math.Abs((a.X * (b.Y - c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y)) / 4.0);
         }
 
-        /// <summary>
         /// The part visualising the specific primitive.
-        /// </summary>
         public override void DrawSelf(Graphics grfx)
         {
             base.DrawSelf(grfx);
@@ -66,5 +60,5 @@ namespace Draw.src.Model
 
         }
 
-    } // end of class TriangleShape
+    } 
 }

@@ -1,4 +1,4 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
   <PropertyGroup>
     <ProjectGuid>{B7A9A968-DE7B-4537-9423-9D8ED1A72BF9}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -91,9 +91,7 @@
     <Compile Include="src\Model\TripleCrossedCircle.cs" />
     <Compile Include="src\Model\TripleCrossedRectangle.cs" />
     <Compile Include="src\Model\TripleCrossedTrapezoid.cs" />
-    <Compile Include="..\..\..\..\..\First\DialogProcessor.cs">
-      <Link>src\Processors\DialogProcessor.cs</Link>
-    </Compile>
+    <Compile Include="src\Processors\DialogProcessor.cs" />
     <Compile Include="src\Processors\DisplayProcessor.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -5,23 +5,21 @@ using System.Drawing;
 namespace Draw.src.Model
 {
     [Serializable]
-    public class CrossCircleWithTwoLines : Shape
+    public class CrossedCircleWithTwoLines : Shape
     {
-        public CrossCircleWithTwoLines(RectangleF rect) : base(rect)
+        public CrossedCircleWithTwoLines(RectangleF rect) : base(rect)
         {
 
         }
-        public CrossCircleWithTwoLines(CrossCircleWithTwoLines rectangle) : base(rectangle)
+        public CrossedCircleWithTwoLines(CrossedCircleWithTwoLines rectangle) : base(rectangle)
         {
 
         }
-        /// <summary>
         /// Checking whether a point belongs to the circle.
         /// In the case of a circle, this method may not be overridden because
         /// The implementation matches that of the abstract Shape class it checks for
         /// whether the point is in the element's bounding circle (and it matches
         /// the element in this case).
-        /// </summary>
 
         public override bool Contains(PointF point)
         {
@@ -37,9 +35,7 @@ namespace Draw.src.Model
                 return false;
         }
 
-        /// <summary>
         /// The part visualising the specific primitive.
-        /// </summary>
         public override void DrawSelf(Graphics grfx)
         {
             base.DrawSelf(grfx);
@@ -84,5 +80,5 @@ namespace Draw.src.Model
 
             grfx.ResetTransform();
         }
-    } // end of class CrossedCircleWithTwoLines
+    } 
 }
